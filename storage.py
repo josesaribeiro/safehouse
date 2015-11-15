@@ -84,10 +84,18 @@ def addSensor(sensorID, sensorType):
 		return sensorCollection.insert_one({
 			"sensorID": sensorID,
 			"sensorType": sensorType,
-			"status": STATUS_BAD
+			"status": STATUS_TRIGGERED
 		}).inserted_id
 	else:
 		return None
+
+# update sensor status
+def updateSensorStatus(sensorID, status):
+	return sensorCollection.update_one(
+		{ "sensorID": sensorID },
+		{ '$set': { "status": status } },
+		upsert = True
+	).upserted_id
 
 # determines if a given user uses a given sensor
 def isSensorUser(sensorID, username):
