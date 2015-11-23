@@ -1,0 +1,65 @@
+body {
+    float: left;
+    margin: 0 auto;
+    width: 100%;
+    background: #eee;
+    font-family: calibri;
+    font-size: 24px;
+}
+
+.header {
+    padding: 10px 20px;
+    background: #333;
+    color: #aaa;
+}
+
+.header a {
+    color: #aaa;
+    text-decoration: none;
+}
+
+.logout {
+    float: right;
+}
+
+.header a:hover {
+    color: #ccc;
+}
+
+main {
+    padding: 10px 20px;
+    color: #333;
+}
+
+.greetings {
+    text-align: center;
+}
+
+ul {
+    list-style-type: none;
+    padding-left:0;
+}
+
+.sensor {
+    padding: 20px;
+    border: 1px solid #999;
+}
+
+.lost {
+    background: #ddd;
+    color: #aaa;
+}
+
+.triggered {
+    background: #900;
+    color: #eee;
+}
+
+.default {
+    background: #090;
+    color: #eee;
+}
+
+
+
+

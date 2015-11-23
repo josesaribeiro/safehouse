@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>Safehouse | Home</title>
+        <link rel="stylesheet" type="text/css"
+        href="{{ url_for('static', filename='safehouse.css') }}">
+	</head>
+	<body>
+        <div class="header">
+            <span class="logo">
+                <a href="/">
+                    Safehouse
+                </a>
+            </span>
+            <span class="logout">
+                <a href="logout">
+                    Log out
+                </a>
+            </span>
+        </div>
+        <main>
+            <p class="greetings">
+                Welcome, {{username}}!
+            </p>
+<!--             <form action="/register-sensor-to-user" method="post">
+                Add Sensor <input
+                    type=text
+                    name=sensorID
+                    placeholder="Sensor ID"
+                ><input
+                    type=text
+                    name=description
+                    placeholder="Description"
+                ><input type=submit value=Add>
+            </form> -->
+            <ul class="sensors">
+                {% for sensor in sensorsWrapper.sensors %}
+                    <li>
+                        <div class="sensor
+                        {% if sensor.status == 0 %}default{% endif %}
+                        {% if sensor.status == 1 %}triggered{% endif %}
+                        {% if sensor.status == 2 %}lost{% endif %}">
+                            {{ sensor.description }} ({{ sensor.type }})
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+            
+
+
+        </main>
+        
+	</body>
+</html>

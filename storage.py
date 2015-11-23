@@ -30,7 +30,8 @@ sensorCollection = database['Sensor']
 # the same sensor.
 # {
 # 	"sensorID": <string>,
-# 	"username": <string>
+# 	"username": <string>,
+#   "description": <string>
 # }
 # Primary key: (sensorID, username)
 sensorUserCollection = database['SensorUser']
@@ -105,16 +106,33 @@ def isSensorUser(sensorID, username):
 	}) is not None
 
 # returns object ID if added correctly, return None otherwise
-def addSensorUser(sensorID, username):
+def addSensorUser(sensorID, username, description):
+	print "began addsensoruser function"
 	if isSensorUser(sensorID, username) == False:
-		return sensorUserCollection.insert_one({
-			"sensorID": sensorID,
-			"username": username
+		if getUser(username) is not None:
+			if getSensor(sensorID) is not None:
+				return sensorUserCollection.insert_one({
+					"sensorID": sensorID,
+					"username": username,
+					"description": description
+				})
+	return None
+
+# returns all sensors belonging to 'username'
+def getSensorsForUser(username):
+	returnList = []
+	for sensorAndUserInfo in sensorUserCollection.find({"username": username}):
+		sensorQueryResult = sensorCollection.find_one({
+			"sensorID": sensorAndUserInfo['sensorID']
 		})
-	else:
-		return None
-
-
+		sensorObjectToReturn = {
+			"id": sensorQueryResult['sensorID'],
+			"type": sensorQueryResult['sensorType'],
+			"description": sensorAndUserInfo['description'],
+			"status": sensorQueryResult['status']
+		}
+		returnList.append(sensorObjectToReturn)
+	return returnList
 
 
 

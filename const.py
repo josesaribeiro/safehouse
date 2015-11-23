@@ -1,3 +1,4 @@
 # Sensor statuses
 STATUS_DEFAULT = 0
 STATUS_TRIGGERED = 1
+STATUS_LOST = 2
