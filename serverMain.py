@@ -43,16 +43,9 @@ def login():
 @app.route('/register', methods=['POST', 'GET'])
 def register():
     if request.method == 'GET':
-        return '''
-            <h1>Sign up for Safehouse</h1>
-            <form action="/register" method="post">
-                <p>Username <input type=text name=username>
-                <p>Password <input type=text name=hashedPassword0>
-                <p>Re-enter password <input type=text name=hashedPassword1>
-                <p><input type=submit value=Register>
-            </form>
-            <a href="login">Know your username? Log in here!</a>
-        '''
+        if 'username' in session:
+            return redirect(url_for('profile'))
+        return render_template('register.html')
     elif request.method == 'POST':
         username = request.form['username']
         hashedPassword0 = request.form['hashedPassword0']

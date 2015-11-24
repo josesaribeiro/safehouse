@@ -36,47 +36,54 @@
         </script>
 	</head>
 	<body>
-        <div class="header">
-            <span class="logo">
-                <a href="/">
-                    Safehouse
-                </a>
-            </span>
-            <span class="logout">
-                <a href="logout">
-                    Log out
-                </a>
-            </span>
+        <div id="container">
+            <div class="header">
+                <span class="logo">
+                    <a href="/">
+                        Safehouse
+                    </a>
+                </span>
+                <span class="logout">
+                    <a href="logout">
+                        Log out
+                    </a>
+                </span>
+            </div>
+            <main>
+                <h2 class="greetings">
+                    Welcome, {{username}}!
+                </h2>
+                <form class="addsensor" action="/register-sensor-to-user" method="post">
+                    <input type=text name=sensorID placeholder="Sensor ID" autocomplete="off">
+                    <input type=text name=description placeholder="Description" autocomplete="off">
+                    <span class="submit" onclick="javascript:this.parentNode.submit();">ADD</span>
+                </form>
+                <div class="sensors">
+                    <ul>
+                        {% for sensor in sensorsWrapper.sensors %}
+                            <li>
+                                <div data-sensorID="{{sensor.id}}" class="sensor
+                                {% if sensor.status == 0 %}default{% endif %}
+                                {% if sensor.status == 1 %}triggered{% endif %}
+                                {% if sensor.status == 2 %}disconnected{% endif %}">
+                                    <span>
+                                        {{ sensor.description }} ({{ sensor.type }})
+                                    </span>
+                                    <span>
+                                        <form action="/remove-sensor-from-user" method="post">
+                                            <input type="hidden" name="sensorID" value="{{sensor.id}}"><div class="ex" onclick="javascript:this.parentNode.submit();">&#10005;</div>
+                                        </form>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </main>
+            <div id="footer">
+                <div>Yingjia Lee | Kevin Lu | Ryan Voong | Jeffrey Wong</div>
+                <div>UCLA Computer Science M117</div>
+                <div>Fall 2015</div>
+            </div>
         </div>
-        <main>
-            <p class="greetings">
-                Welcome, {{username}}!
-            </p>
-            <form action="/register-sensor-to-user" method="post">
-                Add Sensor <input type=text name=sensorID placeholder="Sensor ID">
-                <input type=text name=description placeholder="Description">
-                <input type=submit value=Add>
-            </form>
-            <ul class="sensors">
-                {% for sensor in sensorsWrapper.sensors %}
-                    <li>
-                        <div data-sensorID="{{sensor.id}}" class="sensor
-                        {% if sensor.status == 0 %}default{% endif %}
-                        {% if sensor.status == 1 %}triggered{% endif %}
-                        {% if sensor.status == 2 %}disconnected{% endif %}">
-                            <span>
-                                {{ sensor.description }} ({{ sensor.type }})
-                            </span>
-                            <span>
-                                <form action="/remove-sensor-from-user" method="post">
-                                    <input type="hidden" name="sensorID" value="{{sensor.id}}">
-                                    <input type=submit value=Remove>
-                                </form>
-                        </div>
-                    </li>
-                {% endfor %}
-            </ul>
-        </main>
-        
 	</body>
 </html>

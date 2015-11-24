@@ -1,17 +1,27 @@
 body {
     margin: 0 auto;
     width: 100%;
-    background: #333;
+    background: #554;
     font-family: calibri;
     font-size: 24px;
 }
 
-.logincontainer hr {
-    margin: 40px auto 30px;
+#container {
+    margin: 0 auto;
+    width: 700px;
+    max-width: 80%;
+}
+
+.userformcontainer {
+    text-align: center;
+}
+
+.userformcontainer hr {
+    margin: 20px auto 10px;
     width: 300px;
 }
 
-.logincontainer form input {
+.userformcontainer form input {
     font-size: 16px;
     height: 30px;
     width: 280px;
@@ -19,47 +29,88 @@ body {
     padding: 3px 10px;
 }
 
+.ex {
+    font-size: 16px;
+    position: relative;
+    top: -28px;
+    height: 20px;
+    width: 20px;
+    float: right;
+    border-radius: 20px;
+    padding: 6px 1px 4px 9px;
+    background: #333;
+    color: #aaa;
+    cursor: pointer;
+}
+
 .submit {
     height: 30px;
     width: 280px;
     margin: 10px auto;
     border: 2px solid #555;
-    background: #377;
     color: #eee;
     padding: 3px 10px;
     cursor: pointer;
 }
 
-.submit:hover {
+.loginform .submit {
+    background: #377;
+}
+
+.loginform .submit:hover {
+    background: #488;
+}
+
+.registerform .submit {
+    background: #734;
+}
+
+.registerform .submit:hover {
+    background: #845;
+}
+
+.loginbutton {
+    text-decoration: none;
+    height: 100px;
+    width: 300px;
+    margin: 0 auto;
+    border: 2px solid #555;
+    border-radius: 1px;
+    padding: 5px 113px; 8px;
+    background: #377;
+    color: #eee;
+    cursor: pointer;
+}
+
+.loginbutton:hover {
     background: #488;
 }
 
 .signupbutton {
     text-decoration: none;
-}
-
-.signupbutton div {
-    width: 100px;
+    height: 100px;
+    width: 300px;
     margin: 0 auto;
     border: 2px solid #555;
     border-radius: 1px;
-    padding: 5px 20px; 8px;
+    padding: 5px 110px; 8px;
     background: #734;
     color: #eee;
     cursor: pointer;
 }
 
-.signupbutton div:hover {
+.signupbutton:hover {
     background: #845;
 }
 
-.signupmessage {
+.alternativemessage {
     padding: 20px 0 0;
 }
 
 .header {
     margin: 0;
     padding: 10px 20px;
+    background: #333;
     color: #aaa;
     height: 30px;
 }
@@ -73,10 +124,6 @@ body {
     float: right;
 }
 
-.login {
-    float: right;
-}
-
 .header a:hover {
     color: #ccc;
 }
@@ -85,7 +132,9 @@ main {
     position: absolute;
     top: 50px;
     height: 530px;
-    width: 100%;
+    width: 700px;
+    max-width: 80%;
+    margin: 0 auto;
     padding: 10px 0;
     color: #333;
     background: #eee;
@@ -113,8 +162,39 @@ main .introduction h3 {
     text-align: center;
 }
 
-.logincontainer {
+.addsensor {
     text-align: center;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.addsensor input {
+    font-size: 14px;
+    height: 20px;
+    width: 273px;
+    margin: 10px 0 0;
+    padding: 3px 10px;
+}
+
+.addsensor .submit {
+    height: 20px;
+    width: 30px;
+    font-size: 16px;
+    text-align: center;
+    margin: 10px auto;
+    border: 2px solid #555;
+    background: #333;
+    color: #eee;
+    padding: 3px 10px;
+    cursor: pointer;
+}
+
+.addsensor .submit:hover {
+    background: #444;
+}
+
+.sensors {
+    margin: 0 20px;
 }
 
 ul {
@@ -146,10 +226,12 @@ ul {
     position: absolute;
     top: 600px;
     height: 100px;
-    width: 100%;
+    width: 700px;
+    max-width: 80%;
     text-align: center;
     margin: 0 auto;
     padding: 10px 0 0;
+    background: #333;
     font-size: 12px;
     color: #eee;
 }

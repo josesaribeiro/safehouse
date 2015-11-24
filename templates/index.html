@@ -3,48 +3,38 @@
 	<head>
 		<title>Safehouse | Home</title>
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='safehouse.css') }}">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-        <script>
-            $(document).ready(function() {
-                $(".introduction").children().hide();
-                $(".introduction").children("h1").fadeIn(700);
-                $(".introduction").children("hr").delay(250).fadeIn(700);
-                $(".introduction").children("h3").delay(500).fadeIn(700);
-                $(".introduction").children(".signupbutton").delay(750).fadeIn(1000);
-            });
-        </script>
 	</head>
 	<body>
-        <div class="header">
-            <span class="logo">
-                <a href="/">
-                    Safehouse
-                </a>
-            </span>
-            <span class="login">
-                <a href="login">
-                    Log In
-                </a>
-            </span>
-        </div>
-        <main>
-            <div class="introduction">
-                <h1>
-                    Safehouse
-                </h1>
-                <hr>
-                <h3>
-                    Protect your world
-                </h3>
-                <a href="register" class="signupbutton">
-                    Sign Up
-                </a>
+        <div id="container">
+            <div class="header">
+                <span class="logo">
+                    <a href="/">
+                        Safehouse
+                    </a>
+                </span>
             </div>
-        </main>
-        <div id="footer">
-            <div>Yingjia Lee | Kevin Lu | Ryan Voong | Jeffrey Wong</div>
-            <div>UCLA Computer Science M117</div>
-            <div>Fall 2015</div>
+            <main>
+                <div class="introduction">
+                    <h1>
+                        Safehouse
+                    </h1>
+                    <hr>
+                    <h3>
+                        Protect your world
+                    </h3>
+                    <a href="login" class="loginbutton">
+                        LOG IN
+                    </a><br><br>
+                    <a href="register" class="signupbutton">
+                        SIGN UP
+                    </a>
+                </div>
+            </main>
+            <div id="footer">
+                <div>Yingjia Lee | Kevin Lu | Ryan Voong | Jeffrey Wong</div>
+                <div>UCLA Computer Science M117</div>
+                <div>Fall 2015</div>
+            </div>
         </div>
 	</body>
 </html>
