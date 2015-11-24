@@ -6,12 +6,16 @@ body {
     font-size: 24px;
 }
 
-.logincontainer hr {
-    margin: 40px auto 30px;
+.userformcontainer {
+    text-align: center;
+}
+
+.userformcontainer hr {
+    margin: 20px auto 10px;
     width: 300px;
 }
 
-.logincontainer form input {
+.userformcontainer form input {
     font-size: 16px;
     height: 30px;
     width: 280px;
@@ -19,41 +23,80 @@ body {
     padding: 3px 10px;
 }
 
+.ex {
+    font-size: 16px;
+    position: relative;
+    top: -28px;
+    height: 20px;
+    width: 20px;
+    float: right;
+    border-radius: 20px;
+    padding: 6px 1px 4px 9px;
+    background: #333;
+    cursor: pointer;
+}
+
 .submit {
     height: 30px;
     width: 280px;
     margin: 10px auto;
     border: 2px solid #555;
-    background: #377;
     color: #eee;
     padding: 3px 10px;
     cursor: pointer;
 }
 
-.submit:hover {
+.loginform .submit {
+    background: #377;
+}
+
+.loginform .submit:hover {
+    background: #488;
+}
+
+.registerform .submit {
+    background: #734;
+}
+
+.registerform .submit:hover {
+    background: #845;
+}
+
+.loginbutton {
+    text-decoration: none;
+    height: 100px;
+    width: 300px;
+    margin: 0 auto;
+    border: 2px solid #555;
+    border-radius: 1px;
+    padding: 5px 113px; 8px;
+    background: #377;
+    color: #eee;
+    cursor: pointer;
+}
+
+.loginbutton:hover {
     background: #488;
 }
 
 .signupbutton {
     text-decoration: none;
-}
-
-.signupbutton div {
-    width: 100px;
+    height: 100px;
+    width: 300px;
     margin: 0 auto;
     border: 2px solid #555;
     border-radius: 1px;
-    padding: 5px 20px; 8px;
+    padding: 5px 110px; 8px;
     background: #734;
     color: #eee;
     cursor: pointer;
 }
 
-.signupbutton div:hover {
+.signupbutton:hover {
     background: #845;
 }
 
-.signupmessage {
+.alternativemessage {
     padding: 20px 0 0;
 }
 
@@ -70,10 +113,6 @@ body {
 }
 
 .logout {
-    float: right;
-}
-
-.login {
     float: right;
 }
 
@@ -110,10 +149,6 @@ main .introduction h3 {
 }
 
 .greetings {
-    text-align: center;
-}
-
-.logincontainer {
     text-align: center;
 }
 

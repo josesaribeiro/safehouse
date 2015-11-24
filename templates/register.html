@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <title>Safehouse | Log In</title>
+        <title>Safehouse | Sign Up</title>
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='safehouse.css') }}">
     </head>
     <body>
@@ -15,18 +15,19 @@
         <main>
             <div class="userformcontainer">
                 <h2 class="greetings">
-                    Log in
+                    Sign up
                 </h2>
                 <hr>
-                <form class="loginform" action="/login" method="post">
+                <form class="registerform" action="/register" method="post">
                     <input type=text name=username placeholder="Enter your username" autocomplete="off"><br>
-                    <input type=password name=hashedPassword placeholder="Enter your password"><br>
-                    <div class="submit" onclick="javascript:this.parentNode.submit();">LOG IN</div>
+                    <input type=password name="hashedPassword0" placeholder="Enter your password"><br>
+                    <input type=password name="hashedPassword1" placeholder="Re-enter your password"><br>
+                    <div class="submit" onclick="javascript:this.parentNode.submit();">SIGN UP</div>
                 </form>
                 <hr>
-                <p class="alternativemessage">Don't have an account?</p>
-                <a href="register" class="signupbutton">
-                    SIGN UP
+                <p class="alternativemessage">Already have an account?</p>
+                <a href="login" class="loginbutton">
+                    LOG IN
                 </a>
             </div>
         </main>
