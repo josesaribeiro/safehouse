@@ -13,12 +13,16 @@ body {
     color: #aaa;
 }
 
-.header a {
+a {
     color: #aaa;
     text-decoration: none;
 }
 
 .logout {
+    float: right;
+}
+
+.login {
     float: right;
 }
 
@@ -29,6 +33,23 @@ body {
 main {
     padding: 10px 20px;
     color: #333;
+}
+
+.introduction {
+    text-align: center;
+    margin: 150px 0;
+}
+
+.introduction h1 {
+    margin: 20px 0 5px;
+}
+
+.introduction hr {
+    width: 300px;
+}
+
+.introduction h3 {
+    margin: 0 0 20px;
 }
 
 .greetings {
@@ -45,7 +66,7 @@ ul {
     border: 1px solid #999;
 }
 
-.lost {
+.disconnected {
     background: #ddd;
     color: #aaa;
 }
@@ -57,6 +78,19 @@ ul {
 
 .default {
     background: #090;
+    color: #eee;
+}
+
+.signupbutton {
+    margin: 0 auto;
+    border: 1px solid #777;
+    border-radius: 8px;
+    padding: 5px 0 8px;
+    width: 120px;
+    background: #777;
+ }
+
+.signupbutton a {
     color: #eee;
 }
 

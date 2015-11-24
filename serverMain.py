@@ -4,14 +4,22 @@ from storage import *
 
 app = Flask("Safehouse Server")
 
-@app.route('/', methods=['POST', 'GET'])
+@app.route('/', methods=['GET'])
 def index():
+    if request.method == 'GET':
+        if 'username' in session:
+            return redirect(url_for('profile'))
+        else:
+            return render_template('index.html')
+
+@app.route('/profile', methods=['POST', 'GET'])
+def profile():
     if request.method == 'GET':
         if 'username' in session:
             username = session['username']
             sensors = getSensorsForUser(username)
             sensorsWrapper = {'sensors': sensors}
-            return render_template('index.html', username=username, sensorsWrapper=sensorsWrapper)
+            return render_template('profile.html', username=username, sensorsWrapper=sensorsWrapper)
         else:
             return redirect(url_for('login'))
 
@@ -33,7 +41,7 @@ def login():
         hashedPassword = request.form['hashedPassword']
         if verifyUser(username, hashedPassword):
             session['username'] = username
-            return redirect(url_for('index'))
+            return redirect(url_for('profile'))
         else:
             return redirect(url_for('login'))
 
@@ -58,14 +66,15 @@ def register():
         if hashedPassword0 == hashedPassword1:
             if addUser(username, hashedPassword0) is not None:
                 session['username'] = username
-                return redirect(url_for('index'))
+                return redirect(url_for('profile'))
         return redirect(url_for('register'))
 
 # User logout
 @app.route('/logout', methods=['GET'])
 def logout():
-    session.pop('username', None)
-    return redirect(url_for('login'))
+    if 'username' in session:
+        session.pop('username', None)
+    return redirect(url_for('index'))
 
 @app.route('/location', methods=['POST', 'GET'])
 def location():
@@ -105,9 +114,15 @@ def registerSensorToUser():
             print username + ' has successfully added' + sensorID + '.\n'
         else:
             print username + ' tried to add ' + sensorID + ' but failed.\n'
-        return redirect(url_for('getSensors'))
-    else:
-        return redirect(url_for('login'))
+    return redirect(url_for('profile'))
+
+@app.route('/remove-sensor-from-user', methods=['POST'])
+def removeSensorFromUser():
+    if 'username' in session:
+        sensorID = request.form['sensorID']
+        username = session['username']
+        deleteSensorUser(sensorID, username)
+    return redirect(url_for('profile'))
 
 app.secret_key = '\x8a\xf2\xaa8\xe1\xac%m\x1bw\x88D%!\x89=Q2\x00QrE}4'
 

@@ -3,6 +3,7 @@
 
 from pymongo import MongoClient
 from const import *
+import datetime
 
 database = MongoClient(
 	"mongodb://username:password@ds053954.mongolab.com:53954/sandbox"
@@ -19,11 +20,18 @@ userCollection = database['User']
 # Sensor
 # {
 # 	"sensorID": <string>,
-# 	"sensorType": <string>,
-# 	"status": <string>
+# 	"sensorType": <string>
 # }
 # Primary key: (sensorID)
 sensorCollection = database['Sensor']
+
+# SensorStatus
+# {
+# 	"sensorID": <string>,
+# 	"status": <int>
+# }
+# Primary key: (sensorID)
+sensorStatusCollection = database['SensorStatus']
 
 # SensorUser
 # A user  can oversee multiple sensors, and multiple users can oversee
@@ -84,17 +92,19 @@ def addSensor(sensorID, sensorType):
 	if getSensor(sensorID) is None:
 		return sensorCollection.insert_one({
 			"sensorID": sensorID,
-			"sensorType": sensorType,
-			"status": STATUS_TRIGGERED
+			"sensorType": sensorType
 		}).inserted_id
 	else:
 		return None
 
 # update sensor status
 def updateSensorStatus(sensorID, status):
-	return sensorCollection.update_one(
+	return sensorStatusCollection.update_one(
 		{ "sensorID": sensorID },
-		{ '$set': { "status": status } },
+		{ '$set': {
+			"status": status,
+			"date": datetime.datetime.utcnow()
+		} },
 		upsert = True
 	).upserted_id
 
@@ -118,18 +128,42 @@ def addSensorUser(sensorID, username, description):
 				})
 	return None
 
+def deleteSensorUser(sensorID, username):
+	print "began deletesensoruser function"
+	if isSensorUser(sensorID, username) is not None:
+		return sensorUserCollection.delete_many({
+			"sensorID": sensorID,
+			"username": username
+		}).deleted_count
+	else:
+		return None
+
 # returns all sensors belonging to 'username'
 def getSensorsForUser(username):
 	returnList = []
 	for sensorAndUserInfo in sensorUserCollection.find({"username": username}):
+		sensorID = sensorAndUserInfo['sensorID']
+		sensorDescription = sensorAndUserInfo['description']
+		sensorType = "Unknown sensor type"
+		sensorStatus = 2 # signal lost / disconnected
+		
 		sensorQueryResult = sensorCollection.find_one({
-			"sensorID": sensorAndUserInfo['sensorID']
+			"sensorID": sensorID
 		})
+		if (sensorQueryResult is not None):
+			sensorType = sensorQueryResult['sensorType']
+
+		statusQueryResult = sensorStatusCollection.find_one({
+			"sensorID": sensorID
+		})
+		if (statusQueryResult is not None):
+			sensorStatus = statusQueryResult['status']
+
 		sensorObjectToReturn = {
-			"id": sensorQueryResult['sensorID'],
-			"type": sensorQueryResult['sensorType'],
-			"description": sensorAndUserInfo['description'],
-			"status": sensorQueryResult['status']
+			"id": sensorID,
+			"description": sensorDescription,
+			"type": sensorType,
+			"status": sensorStatus
 		}
 		returnList.append(sensorObjectToReturn)
 	return returnList

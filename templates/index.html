@@ -2,8 +2,17 @@
 <html lang="en">
 	<head>
 		<title>Safehouse | Home</title>
-        <link rel="stylesheet" type="text/css"
-        href="{{ url_for('static', filename='safehouse.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='safehouse.css') }}">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $(".introduction").children().hide();
+                $(".introduction").children("h1").fadeIn(700);
+                $(".introduction").children("hr").delay(250).fadeIn(700);
+                $(".introduction").children("h3").delay(500).fadeIn(700);
+                $(".introduction").children(".signupbutton").delay(1500).fadeIn(1000);
+            });
+        </script>
 	</head>
 	<body>
         <div class="header">
@@ -12,42 +21,27 @@
                     Safehouse
                 </a>
             </span>
-            <span class="logout">
-                <a href="logout">
-                    Log out
+            <span class="login">
+                <a href="login">
+                    Log In
                 </a>
             </span>
         </div>
         <main>
-            <p class="greetings">
-                Welcome, {{username}}!
-            </p>
-<!--             <form action="/register-sensor-to-user" method="post">
-                Add Sensor <input
-                    type=text
-                    name=sensorID
-                    placeholder="Sensor ID"
-                ><input
-                    type=text
-                    name=description
-                    placeholder="Description"
-                ><input type=submit value=Add>
-            </form> -->
-            <ul class="sensors">
-                {% for sensor in sensorsWrapper.sensors %}
-                    <li>
-                        <div class="sensor
-                        {% if sensor.status == 0 %}default{% endif %}
-                        {% if sensor.status == 1 %}triggered{% endif %}
-                        {% if sensor.status == 2 %}lost{% endif %}">
-                            {{ sensor.description }} ({{ sensor.type }})
-                        </div>
-                    </li>
-                {% endfor %}
-            </ul>
-            
-
-
+            <div class="introduction">
+                <h1>
+                    Safehouse
+                </h1>
+                <hr>
+                <h3>
+                    Protect your world
+                </h3>
+                <div class="signupbutton">
+                    <a href="register">
+                        Sign Up
+                    </a>
+                </div>
+            </div>
         </main>
         
 	</body>
