@@ -1,19 +1,70 @@
 body {
-    float: left;
     margin: 0 auto;
     width: 100%;
-    background: #eee;
+    background: #333;
     font-family: calibri;
     font-size: 24px;
 }
 
-.header {
-    padding: 10px 20px;
-    background: #333;
-    color: #aaa;
+.logincontainer hr {
+    margin: 40px auto 30px;
+    width: 300px;
 }
 
-a {
+.logincontainer form input {
+    font-size: 16px;
+    height: 30px;
+    width: 280px;
+    margin: 10px 0 0;
+    padding: 3px 10px;
+}
+
+.submit {
+    height: 30px;
+    width: 280px;
+    margin: 10px auto;
+    border: 2px solid #555;
+    background: #377;
+    color: #eee;
+    padding: 3px 10px;
+    cursor: pointer;
+}
+
+.submit:hover {
+    background: #488;
+}
+
+.signupbutton {
+    text-decoration: none;
+}
+
+.signupbutton div {
+    width: 100px;
+    margin: 0 auto;
+    border: 2px solid #555;
+    border-radius: 1px;
+    padding: 5px 20px; 8px;
+    background: #734;
+    color: #eee;
+    cursor: pointer;
+}
+
+.signupbutton div:hover {
+    background: #845;
+}
+
+.signupmessage {
+    padding: 20px 0 0;
+}
+
+.header {
+    margin: 0;
+    padding: 10px 20px;
+    color: #aaa;
+    height: 30px;
+}
+
+.header a {
     color: #aaa;
     text-decoration: none;
 }
@@ -31,28 +82,38 @@ a {
 }
 
 main {
-    padding: 10px 20px;
+    position: absolute;
+    top: 50px;
+    height: 530px;
+    width: 100%;
+    padding: 10px 0;
     color: #333;
+    background: #eee;
 }
 
-.introduction {
+main .introduction {
     text-align: center;
-    margin: 150px 0;
+    margin: 180px 0 120px;
 }
 
-.introduction h1 {
+main .introduction h1 {
     margin: 20px 0 5px;
+    font-size: 60px;
 }
 
-.introduction hr {
+main .introduction hr {
     width: 300px;
 }
 
-.introduction h3 {
-    margin: 0 0 20px;
+main .introduction h3 {
+    margin: 0 0 50px;
 }
 
 .greetings {
+    text-align: center;
+}
+
+.logincontainer {
     text-align: center;
 }
 
@@ -81,19 +142,18 @@ ul {
     color: #eee;
 }
 
-.signupbutton {
+#footer {
+    position: absolute;
+    top: 600px;
+    height: 100px;
+    width: 100%;
+    text-align: center;
     margin: 0 auto;
-    border: 1px solid #777;
-    border-radius: 8px;
-    padding: 5px 0 8px;
-    width: 120px;
-    background: #777;
- }
-
-.signupbutton a {
+    padding: 10px 0 0;
+    font-size: 12px;
     color: #eee;
 }
 
-
-
-
+#footer div {
+    padding: 5px 0 0;
+}

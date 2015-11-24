@@ -27,15 +27,9 @@ def profile():
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     if request.method == 'GET':
-        return '''
-            <h1>Log in with your username and password</h1>
-            <form action="/login" method="post">
-                <p>Username <input type=text name=username>
-                <p>Password <input type=text name=hashedPassword>
-                <p><input type=submit value=Login>
-            </form>
-            <a href="register">Don't have a username? Sign up now!</a>
-        '''
+        if 'username' in session:
+            return redirect(url_for('profile'))
+        return render_template('login.html')
     elif request.method == 'POST':
         username = request.form['username']
         hashedPassword = request.form['hashedPassword']
@@ -99,9 +93,14 @@ def updateSensor():
 @app.route('/get-sensors', methods=['GET'])
 def getSensors():
     if 'username' in session:
-        return json.dumps(getSensorsForUser(session['username']))
+        return json.dumps({"sensors": getSensorsForUser(session['username'])})
     else:
         return redirect(url_for('login'))
+
+# Get sensor information
+@app.route('/get-sensors-ryan', methods=['GET'])
+def getSensorsRyan():
+    return json.dumps({"sensors": getSensorsForUser('Ryan')})
 
 # Register sensor to the logged in user
 @app.route('/register-sensor-to-user', methods=['POST'])

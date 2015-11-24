@@ -12,7 +12,7 @@
                     url: "{{ url_for('getSensors') }}",
                     contentType: 'application/json;charset=UTF-8',
                     success: function(result) {
-                        JSON.parse(result).forEach(function(sensor) {
+                        JSON.parse(result)['sensors'].forEach(function(sensor) {
                             var status;
                             if (sensor['status'] == 0) {
                                 status = "default";

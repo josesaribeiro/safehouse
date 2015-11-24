@@ -1,54 +1,46 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<title>Safehouse | Login</title>
-        <link rel="stylesheet" type="text/css"
-        href="{{ url_for('static', filename='safehouse.css') }}">
-	</head>
-	<body>
+    <head>
+        <title>Safehouse | Login</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='safehouse.css') }}">
+    </head>
+    <body>
         <div class="header">
             <span class="logo">
                 <a href="/">
                     Safehouse
                 </a>
             </span>
-            <span class="logout">
-                <a href="logout">
-                    Log out
+            <span class="login">
+                <a href="login">
+                    Log In
                 </a>
             </span>
         </div>
         <main>
-            <p class="greetings">
-                Welcome, {{username}}!
-            </p>
-<!--             <form action="/register-sensor-to-user" method="post">
-                Add Sensor <input
-                    type=text
-                    name=sensorID
-                    placeholder="Sensor ID"
-                ><input
-                    type=text
-                    name=description
-                    placeholder="Description"
-                ><input type=submit value=Add>
-            </form> -->
-            <ul class="sensors">
-                {% for sensor in sensorsWrapper.sensors %}
-                    <li>
-                        <div class="sensor
-                        {% if sensor.status == 0 %}default{% endif %}
-                        {% if sensor.status == 1 %}triggered{% endif %}
-                        {% if sensor.status == 2 %}lost{% endif %}">
-                            {{ sensor.description }} ({{ sensor.type }})
-                        </div>
-                    </li>
-                {% endfor %}
-            </ul>
-            
-
-
+            <div class="logincontainer">
+                <h2 class="greetings">
+                    Log in
+                </h2>
+                <hr>
+                <form action="/login" method="post">
+                    <input type=text name=username placeholder="Enter your username"><br>
+                    <input type=text name=hashedPassword placeholder="Enter your password"><br>
+                    <div class="submit" onclick="javascript:this.parentNode.submit();">LOG IN</div>
+                </form>
+                <hr>
+                <p class="signupmessage">Don't have an account?</p>
+                <a href="register" class="signupbutton">
+                    <div>
+                        Sign Up
+                    </div>
+                </a>
+            </div>
         </main>
-        
-	</body>
+        <div id="footer">
+            <div>Yingjia Lee | Kevin Lu | Ryan Voong | Jeffrey Wong</div>
+            <div>UCLA Computer Science M117</div>
+            <div>Fall 2015</div>
+        </div>
+    </body>
 </html>
