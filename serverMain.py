@@ -84,8 +84,7 @@ def location():
 @app.route('/update-sensor', methods=['POST'])
 def updateSensor():
     sensorID = request.form['sensorID']
-    status = request.form['status']
-    print '(sensorID: %s, status: %i)' % (sensorID, status)
+    status = int(request.form['status'])
     updateSensorStatus(sensorID, status)
     return 'Update succeeded'
 
